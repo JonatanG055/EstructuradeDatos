@@ -7,17 +7,24 @@ def ingresar_notas_estudiantes(n):
         nota2 = float(input(f"Ingrese la nota 2 del estudiante {nombre}: "))
         nota3 = float(input(f"Ingrese la nota 3 del estudiante {nombre}: "))
         
-        estudiantes[nombre] = [nota1, nota2, nota3]
+        # Calcula el promedio de las notas
+        promedio = (nota1 + nota2 + nota3) / 3
+        
+        estudiantes[nombre] = {
+            'Nota 1': nota1,
+            'Nota 2': nota2,
+            'Nota 3': nota3,
+            'Promedio': promedio
+        }
     
     return estudiantes
 
 def mostrar_tabla_estudiantes(estudiantes):
     print("\nTabla de Estudiantes y Notas:")
-    print("{:<15} {:<10} {:<10} {:<10}".format("Nombre", "Nota 1", "Nota 2", "Nota 3"))
+    print("{:<15} {:<10} {:<10} {:<10} {:<10}".format("Nombre", "Nota 1", "Nota 2", "Nota 3", "Promedio"))
     
     for nombre, notas in estudiantes.items():
-        nota1, nota2, nota3 = notas
-        print("{:<15} {:<10.2f} {:<10.2f} {:<10.2f}".format(nombre, nota1, nota2, nota3))
+        print("{:<15} {:<10.2f} {:<10.2f} {:<10.2f} {:<10.2f}".format(nombre, notas['Nota 1'], notas['Nota 2'], notas['Nota 3'], notas['Promedio']))
 
 def main():
     n = int(input("Ingrese la cantidad de estudiantes: "))
